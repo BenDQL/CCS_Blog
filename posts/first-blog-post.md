@@ -6,6 +6,8 @@ snippet: This is my first session to learn coding!
 
 Hello, world! I am excited to study the coding and enjoy it.
 
+![a coffce draw in my spare time](/cafe.jpg)
+
 # This is h1
 
 ## This is h2
