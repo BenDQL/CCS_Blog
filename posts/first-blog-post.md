@@ -2,11 +2,12 @@
 title: This is my first blog post!
 published_at: 2024-03-06
 snippet: This is my first session to learn coding!
+disable_html_sanitization: ture
 ---
 
 Hello, world! I am excited to study the coding and enjoy it.
 
-![a coffce draw in my spare time](/cafe.jpg)
+![a coffce draw in my spare time](/static/240306_first_post/cafe.jpg)
 
 # This is h1
 
