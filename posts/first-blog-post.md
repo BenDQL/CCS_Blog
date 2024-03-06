@@ -4,7 +4,7 @@ published_at: 2024-03-06
 snippet: This is my first session to learn coding!
 ---
 
-Hello, world!
+Hello, world! I am excited to study the coding and enjoy it.
 
 # This is h1
 
