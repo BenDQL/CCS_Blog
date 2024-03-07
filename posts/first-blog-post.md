@@ -1,4 +1,4 @@
----
+<!-- ---
 title: This is my first blog post!
 published_at: 2024-03-06
 snippet: This is my first session to learn a coding!
@@ -15,4 +15,13 @@ Hello, guys! I am excited to study the coding and enjoy it.
 
 _underline_
 
-**bold**
+**bold** -->
+
+
+---
+title: This is my first blog post!
+published_at: 2024-03-06
+snippet: This is an excerpt of my first blog post.
+---
+
+Hello, world!
