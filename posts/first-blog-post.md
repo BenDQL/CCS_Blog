@@ -5,7 +5,7 @@ snippet: This is my first session to learn coding!
 disable_html_sanitization: ture
 ---
 
-Hello, world! I am excited to study the coding and enjoy it.
+Hello, guys! I am excited to study the coding and enjoy it.
 
 ![a coffce draw in my spare time](/static/240306_first_post/cafe.jpg)
 
