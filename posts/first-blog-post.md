@@ -1,9 +1,9 @@
-<!-- ---
+---
 title: This is my first blog post!
 published_at: 2024-03-06
-snippet: This is my first session to learn coding!
+snippet: This is my first session to learn a coding!
 disable_html_sanitization: ture
---- -->
+---
 
 Hello, guys! I am excited to study the coding and enjoy it.
 
