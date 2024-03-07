@@ -6,7 +6,7 @@ snippet: This is my first session to learn a coding!
 
 Hello, guys! I am excited to study the coding and enjoy it.
 
-![a coffce draw in my spare time](/static/240306_first_post/cafe.jpg)
+![a coffce draw in my spare time](/240306_first_post/cafe.jpg)
 
 # This is h1
 
