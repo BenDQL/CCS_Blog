@@ -2,7 +2,7 @@
 title: This is my first blog post!
 published_at: 2024-03-06
 snippet: This is my first session to learn a coding! Hello, world!
-disableHtmlSanitization: true
+disable_html_sanitization: true
 ---
 
 Hello, guys! I am excited to study the coding and enjoy it.
