@@ -5,6 +5,8 @@ snippet: This is my first session to learn a coding! Hello, world!
 disable_html_sanitization: true
 ---
 
+random change!!
+
 Hello, guys! I am excited to study the coding and enjoy it.
 
 <img src="/240306_first_post/cafe.jpg" width="500" height="100" />
