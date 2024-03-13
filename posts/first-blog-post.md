@@ -5,15 +5,9 @@ snippet: This is my first session to learn a coding! Hello, world!
 disable_html_sanitization: true
 ---
 
-random change!!
-
-Hello, guys! I am excited to study the coding and enjoy it.
-
-<img src="/240306_first_post/cafe.jpg" width="500" height="100" />
+## This the first week homework
 
 <iframe src="https://editor.p5js.org/BenDQL/full/D0_Eyr6lr" width="500" height="200"></iframe>
-
-## This is h1
 
 ## This is h2
 
