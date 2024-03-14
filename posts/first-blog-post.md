@@ -41,8 +41,90 @@ At first, I need to make the square to transparent `noFill()`, and add the strok
 
 [Remotely Distant](https://www.remotelydistant.com/)
 
-<img title="Remotely Distant" alt="Remotely Distant" src="/static/240306_first_post/Remotely_Distant.png">
+<img title="Remotely Distant" alt="Remotely Distant" src="/240306_first_post/Remotely_Distant.png">
 
-_underline_
+I try to use p5.js to create the similar sketch for "Remotely Distant". The sketch below is I create by using p5.js.
+
+<iframe src="https://editor.p5js.org/BenDQL/full/TFdCDYfIy"width="600" height="650"></iframe>
+
+At the biginning, I see that there are three different color gradient. Base on lesson study, I use color gradient funcion to make one color gradient. After that, I copy this function twice
+and change their color and position. finally, I make a similar sketch to "Remotely Distant".
+
+```
+function setup() {
+  createCanvas(600, 600);
+}
+
+
+function draw() {
+  background('black');
+  noStroke();
+
+
+  const colour_1 = color('green');
+  const colour_2 = color('yellow');
+  for (let i = 0; i < 600; i++) {
+    let p = (i + frameCount) / 600;
+    p = p % 0.5;
+    const c = lerpColor(colour_1, colour_2, p);
+    strokeWeight(1);
+    stroke(c, 100, 100);
+    line(i, 0, i, height / 2);
+  }
+
+  const colour_3 = color('blue');
+  const colour_4 = color('green');
+  for (let i = 0; i < 600; i++) {
+    let p = (i + frameCount) / 400;
+    p = p % 0.5;
+    const c = lerpColor(colour_3, colour_4, p);
+    strokeWeight(1);
+    stroke(c, 100, 100);
+    line(i, height / 2, i, height * 3/ 4 );
+  }
+
+    const colour_5 = color('yellow');
+  const colour_6 = color('pink');
+  for (let i = 0; i < 600; i++) {
+    let p = (i + frameCount) / 600;
+    p = p % 0.5;
+    const c = lerpColor(colour_5, colour_6, p);
+    strokeWeight(1);
+    stroke(c, 100, 100);
+    line(i, height * 3/ 4, i, height );
+  }
+}
+```
+
+When I finish this sketch, I also find a conventient way to achieve this effect. From the code above, I find that in the duplicate code, we we only need to change a few elements like: color, position. So we can wrap thr code into `function`"slidingColours" than call the `slidingColours()`with arguments of `colour1, colour2, y1, y2, pFactor, lines` within `draw ()`.
+
+```
+function setup() {
+  createCanvas(600, 600);
+}
+
+  function slidingColours(colour1, colour2, y1, y2, pFactor, lines) {
+  const colour_1 = colour1;
+  const colour_2 = colour2;
+  for (let i = 0; i < lines; i++) {
+    let p = (i + frameCount) / lines;
+    p = p % pFactor;
+    const c = lerpColor(colour_1, colour_2, p);
+    strokeWeight(1);
+    stroke(c, 100, 100);
+    line(i, y1, i, y2);
+  }
+}
+
+function draw() {
+  background('black');
+  noStroke();
+
+  slidingColours(color('red'), color('blue'), 0, height / 2, 0.5, 600);
+  slidingColours(color('deeppink'), color('darkturquoise'), height / 2, height * 7 / 8, 0.25, 700);
+  slidingColours(color('red'), color('blue'), height * 7/ 8, height, 0.5, 600);
+
+}
+```
 
 **bold** -->
