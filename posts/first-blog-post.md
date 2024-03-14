@@ -5,7 +5,7 @@ snippet: This is my first session to learn a coding! Hello, world!
 disable_html_sanitization: true
 ---
 
-## This the first week homework
+## This is the first week homework 1.0
 
 <iframe src="https://editor.p5js.org/BenDQL/full/D0_Eyr6lr" width="500" height="200"></iframe>
 In the first lesson, our teacher use for loop to create a line of squares by using p5.js. Beased on this sketch, we need to use for loop to create a grid.
@@ -37,7 +37,11 @@ function draw() {
 
 At first, I need to make the square to transparent `noFill()`, and add the stroke `strokeWeight(1)`. After that, I need to create another 4 line (total 5 lines). Using 2 `for ` loops: inter `for` loop is to create 10 squares in one line; out `for` loop is to create 5 lines.
 
-## This is h2
+## This is the first week homework 1.1
+
+[Remotely Distant](https://www.remotelydistant.com/)
+
+<img title="Remotely Distant" alt="Remotely Distant" src="/static/240306_first_post/Remotely_Distant.png">
 
 _underline_
 
