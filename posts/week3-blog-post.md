@@ -1,11 +1,11 @@
 ---
-title: Week 3 blog post!
+title: Week 3 - Effective Complexity & the Cute
 published_at: 2024-03-21
-snippet: week 3 homework
+snippet: Discuss "cute" & "effective complexity" and Assignment 1's journey
 disable_html_sanitization: true
 ---
 
-## AT1 Concepts
+## Assignment 1 Concepts
 
 ### What "cute" is, as an aesthetic category
 
@@ -15,7 +15,7 @@ I think the aesthetic of "cute" is when an object triggers our desire to interac
 
 My understanding of "effective complexity" refers to the degree of complexity that audiences perceive or experience when encountering an object. However, this perceived complexity doesn't overwhelm them; instead, it should foster subjective understanding and emotional resonance. Such complexity can be observed in various forms, including colour, quantity, or composition.
 
-## AT1 Journey
+## Assignment 1 Journey
 
 ### What about the work makes it belong to the aesthetic category of "cute"?
 
@@ -37,15 +37,15 @@ In Rafaël Rozendaal’s original work, the dynamic radial gradient moves endles
 
 <iframe src="https://www.returnreverse.com"width="600" height="650"></iframe>
 
-How did I recreate this artwork on p5.js? My ideas is to make it by 3 steps: 1. create a static radial gradient effect; 2. make the effect moving from inside to outside; 3. Repeat the effect generatioin and animation.
+How did I recreate this artwork on p5.js? My ideas is to achieve it by 3 steps: 1. create a static radial gradient effect; 2. make the effect moving from inside to outside; 3. Repeat the effect generatioin and animation.
 
 ### 1. Create a static radial gradient effect
 
-Firstly, my idea was to draw many circles on the canvas. Each circle has the same center but with increasing radius and slightly different colour. I use the center of the canvas as the center of the circles. The radius of each circle incremenets by 1 and has a different hue. Then, we obtain a static image composed of many circles of different colors as follow:
+Firstly, my idea is to draw many circles on the canvas. Each circle has the same center position but with increasing radius and slightly different colour. I use the center of the canvas as the center of the circles. The radius of each circle incremenets by 1 and has a slightly different hue. Then, we obtain a static image composed of many circles of different colors as follow:
 
 <iframe src="https://editor.p5js.org/BenDQL/full/jgRcqE2ce"width="600" height="650"></iframe>
 
-I create a class called `Circle`, which has `radius`,`hue`,`x` and `y` as attributes. It has a `draw()` method to draw the cricle base on its center perstion(x, y), radius and hue.
+I create a class called `Circle`, which has `radius`,`hue`,`x` and `y` as attributes. It has a `draw()` method to draw the cricle based on its center perstion(x, y), radius and hue.
 
 ```js
 class Circle {
@@ -63,7 +63,7 @@ class Circle {
 }
 ```
 
-I aslo create a `function` to calculate the maximum radius of circle to be drawn on the canvas, which will be used in the `sketch.js`.
+I aslo create a custom function called `calculateMaxRadius` to calculate the maximum radius of circle to be drawn on the canvas, which will be used in the `sketch.js`.
 
 ```js
 // Calculate the max radius to draw according to width & height
@@ -74,7 +74,7 @@ function calculateMaxRadius() {
 }
 ```
 
-Then in the `sketch.js`, I change to the HSB mode and colour value between 0 and maxRadius for easier colour manipulation among circles by calling `colorMode(HSB, maxRadius, 100, 100)`. Using `for ()` to generate the number of `maxRadius` circles, and assign each cricle with a slightly different hue, so to create the radial gradient effect by drawing those circles.
+Then in the `sketch.js`, I change to use the HSB mode and colour value between 0 and maxRadius for easier colour manipulation among circles by calling `colorMode(HSB, maxRadius, 100, 100)`. Using `for` loop to generate the number of `maxRadius` circles, and assign each cricle with a slightly different hue, so to create the radial gradient effect by drawing those circles.
 
 ```js
 const circles = [];
@@ -107,11 +107,11 @@ function draw() {
 
 ### 2. make the effect moving from inside to outside
 
-Based on Step1, I just to make those cricles radius incremenets by 1 afet every draw, so each cricle will become larger and larger.
+Based on Step1, I just to make those cricles radius incremeneted by 1 afet every draw, so each cricle will become larger and larger.
 
 <iframe src="https://editor.p5js.org/BenDQL/full/lFU-wzkGa"width="600" height="650"></iframe>
 
-After drawing a circle, its increated by 1 by calling the `updateRadius` method. Afer every draw, the cricle radius will increase by 1.
+After drawing a circle, its radius should be increased by 1. This logic is written within the `updateRadius` method.
 
 ```js
 class Circle {
@@ -149,7 +149,7 @@ function draw() {
 
 <iframe src="https://editor.p5js.org/BenDQL/full/2FvpealFh"width="600" height="650"></iframe>
 
-Once a circle's radius exceeds the `maxRadius` vaule, the circle will becaome much larger than the canvas size, and that means the circle won't be seen by the viewers. Therefore, the radius of those circles should be reset to 0. This ensure that each circle gradually becaomes larger, than repeat the animation again from a small circle on the center of the canvas, over and over again.
+Once a circle's radius exceeds the `maxRadius` vaule, the circle will becaome much larger than the canvas size, and that means the circle won't be seen by the viewers. Therefore, the radius of those circles should be reset to 0. This ensure that each circle gradually becomes larger and larger, then repeat the animation again from a small circle on the center of the canvas, over and over again.
 
 ```js
   updateRadius() {
@@ -160,7 +160,7 @@ Once a circle's radius exceeds the `maxRadius` vaule, the circle will becaome mu
   }
 ```
 
-However I nedd to ensure that, the smaller cricle will the top of the bigger ones. When the most outside circle radius reset to 0, it still stays as the last element of the `circles` array. It needs to be moved to be the first element, so when drawing the circles from the end to the start within the `circles` array acts the same as drawing circles from larger to smaller. Therefore, `circles`array should be sorted by their radius value ascendingly.
+However I need to ensure that, the smaller cricles are always drawing the top of the bigger ones, so that the smaller ones won't be covered. When the most outside circle's radius resets to 0, it still stays as the last element of the `circles` array. It needs to be moved to be the first element, so when drawing the circles from the end to the start within the `circles` array, oit acts the same as drawing circles from larger to smaller. Therefore, `circles`array should be sorted by their radius value ascendingly.
 
 ```js
 function draw() {
