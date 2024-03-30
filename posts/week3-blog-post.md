@@ -31,7 +31,7 @@ When I encountered Rafaël Rozendaal’s captivating artwork "return reverse .co
 
 In Rafaël Rozendaal’s original work, the dynamic radial gradient moves endlessly in a loop. Watching the gradient spread from the center of the canvas, creating ripples before starting a new one, I couldn't help but think of life's constant cycle - people are born, grow, age, and new life begins again. However, my approach differs slightly. Instead of letting the animation repeat endlessly, I would like to capture the beauty of a single moment within this cycle of life. I'll pause the animation at a specific point, preserving the colour pattern of the radial gradient. Through this, I aim to start a dialogue with Rozendaal's work, reflecting on life's ever-changing nature and the importance of cherishing each moment.
 
-## Replicate the work from Rafaël Rozendaal
+## Replicate "return reverse.com" from Rafaël Rozendaal
 
 [return reverse.com - Rafaël Rozendaal](https://www.returnreverse.com)
 
