@@ -1,6 +1,6 @@
 ---
 title: Assignment 1
-published_at: 2024-03-27
+published_at: 2024-03-29
 snippet: Assignment 1 design
 disable_html_sanitization: true
 ---
