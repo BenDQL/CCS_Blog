@@ -271,4 +271,4 @@ function generateGradientObject() {
 }
 ```
 
-**bold** -->
+---
