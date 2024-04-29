@@ -5,7 +5,7 @@ snippet: class example
 disable_html_sanitization: true
 ---
 
-<canvas id="c2" />
+<canvas id="c2"></canvas>
 
 <script src="/scripts/c2.js"></script>
 <!-- <script scr="/static/scripts/p5.js"></script> -->
