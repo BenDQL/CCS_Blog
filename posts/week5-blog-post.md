@@ -1,9 +1,11 @@
 ---
-title: Glitch example code comment,
+title: week 5 - Glitch
 published_at: 2024-04-10
-snippet: class example
+snippet: Create a self-portrait in glitch style
 disable_html_sanitization: true
 ---
+
+## A self-portrait in the style of glitch
 
 <canvas id="glitch_self_portrait"></canvas>
 
@@ -49,7 +51,7 @@ disable_html_sanitization: true
    }
 
    //give filepath to image element
-   img.src = `/sunset.jpg`
+   img.src = `/self-portrait.jpg`
     
    // define a function that a returns a random value between 0 - max
    const rand_int = max => Math.floor (Math.random () * max)
@@ -265,3 +267,11 @@ disable_html_sanitization: true
   };
 </script>
 ```
+
+## Which of Ngai's aesthetic categories does your self-portrait (and glitch more generally) belong to, and why?
+
+I think my self-portrait falls into the aesthetic category of "Zany." This is because the primary characteristic of "Zany" is unpredictability and excessive, frenetic energy. The effect of adding glitches to my self-portrait makes it unpredictable and chaotic in nature.
+
+## Does glitch increase or decrease effective complexity, and why?
+
+I think glitch aesthetics increase effective complexity. Because glitches introduce unpredictability and irregularity, which can bring errors or unexpected elements into the original image, thereby increasing complexity. On the other hand, glitch aesthetics often involve the underlying structures and technologies of digital media, exploiting the complexity of digital systems to create visually striking works, while also reflecting the inherent complexity of the digital age.
