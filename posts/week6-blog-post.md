@@ -1,5 +1,5 @@
 ---
-title: week 6 - The Post Digital
+title: Week 6 - The Post Digital
 published_at: 2024-04-17
 snippet: c2.js & three.js example
 disable_html_sanitization: true

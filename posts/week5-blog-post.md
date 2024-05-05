@@ -1,5 +1,5 @@
 ---
-title: week 5 - Glitch
+title: Week 5 - Glitch
 published_at: 2024-04-10
 snippet: Create a self-portrait in glitch style
 disable_html_sanitization: true
