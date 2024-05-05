@@ -5,12 +5,14 @@ snippet: Combining ideas with ascii cam
 disable_html_sanitization: true
 ---
 
-## Choose an example from week 4-6 and combine it with ideas from ascii cam.
+## Combine An Example with Ascii Cam
 
 <script src="/scripts/c2.min.js"></script>
 
+<div>Quad Tree Example from c2.js: </div>
 <canvas id="c2"></canvas>
-
+<p></p>
+<div>Combine it with ascii cam: </div>
 <div id="ascii_div"></div>
 
 <script>
@@ -158,6 +160,10 @@ function resize() {
     renderer.size(parent.clientWidth, parent.clientWidth / 16 * 9);
 }
 </script>
+
+### Thought Process
+
+When drawing the quad tree and circles in each frame, I can get image data from canvas using `getImageData`. Each pixel has its own data, I can match ascii chars with the pixel brightness, then adding the char to the ascii_img string. Looping into each pixel and find out its matching ascii data, in the end, there will be a long string represents the ascii chars matching the pixels for the whole drawing from canvas. Displaying the ascii string in the "ascii_div" div, we can see the result of combined ideas.
 
 ```js
 const renderer = new c2.Renderer(document.getElementById("c2"));
@@ -308,4 +314,4 @@ function resize() {
 
 ## Why does combining ideas / libraries seem to make things more aesthetically chaotic?
 
-By adding the effect of ascii cam to the artwork, the original piece becomes more complex. ascii cam utilizes various special symbols to represent moving objects and backgrounds, resulting in another manifestation of creativity. When compared to the original artwork, the one with ASCII cam appears visually more chaotic.
+Each idea or library typically comes with its own set of principles, styles, and features, and it creates some extent of effective complexity. When combining elements from multiple ideas or libraries, they can create a sense of visual and conceptual dissonance, resulting in aesthetically chaos. Combining ideas or libraries can also introduce effective complexity by expanding the range of possibilities and interactions within the artwork. This increased effective complexity can lead to a proliferation of visual elements, interactions, and effects, further contributing to the chaotic aesthetic.

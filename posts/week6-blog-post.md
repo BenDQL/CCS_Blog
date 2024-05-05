@@ -1,213 +1,256 @@
 ---
 title: Week 6 - The Post Digital
 published_at: 2024-04-17
-snippet: c2.js & three.js example
+snippet: c2.js & three.js examples
 disable_html_sanitization: true
 ---
 
-## c2.js example
+## c2.js Example
+
+<script src="/scripts/c2.min.js"></script>
 
 <canvas id="c2"></canvas>
 
-<script src="/scripts/c2.js"></script>
-<!-- <script scr="/static/scripts/p5.js"></script> -->
+<div id="ascii_div"></div>
 
 <script>
+const renderer = new c2.Renderer(document.getElementById('c2'));
+resize();
+
+renderer.background('#cccccc');
+let random = new c2.Random();
 
 
-    let canvas = document.getElementById('c2');
-    let renderer = new c2.Renderer(canvas);
-
-   // const renderer = new Renderer(document.getElementById('c2'));
-    resize();
-
-    renderer.background('#cccccc');
-    let random = new c2.Random();
-
-
-    class Agent extends c2.Point {
-        constructor() {
-            let x = random.next(renderer.width);
-            let y = random.next(renderer.height);
-            super(x, y);
-
-            this.vx = random.next(-2, 2);
-            this.vy = random.next(-2, 2);
-        }
-
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-
-            if (this.x < 0) {
-                this.x = 0;
-                this.vx *= -1;
-            } else if (this.x > renderer.width) {
-                this.x = renderer.width;
-                this.vx *= -1;
-            }
-            if (this.y < 0) {
-                this.y = 0;
-                this.vy *= -1;
-            } else if (this.y > renderer.height) {
-                this.y = renderer.height;
-                this.vy *= -1;
-            }
-        }
-
-        display() {
-            renderer.stroke('#333333');
-            renderer.lineWidth(5);
-            renderer.point(this.x, this.y);
-        }
-    }
-
-    let agents = new Array(20);
-    for (let i = 0; i < agents.length; i++) agents[i] = new Agent();
-
-
-    renderer.draw(() => {
-        renderer.clear();
-
-        let delaunay = new c2.Delaunay();
-        delaunay.compute(agents);
-        let vertices = delaunay.vertices;
-        let edges = delaunay.edges;
-        let triangles = delaunay.triangles;
-
-        let maxArea = 0;
-        let minArea = Number.POSITIVE_INFINITY;
-        for (let i = 0; i < triangles.length; i++) {
-            let area = triangles[i].area();
-            if(area < minArea) minArea = area;
-            if(area > maxArea) maxArea = area;
-        }
-
-        renderer.stroke('#333333');
-        renderer.lineWidth(1);
-        for (let i = 0; i < triangles.length; i++) {
-            let t = c2.norm(triangles[i].area(), minArea, maxArea);
-            let color = c2.Color.hsl(30*t, 30+30*t, 20+80*t);
-            renderer.fill(color);
-            renderer.triangle(triangles[i]);
-        }
-        
-
-        for (let i = 0; i < agents.length; i++) {
-            agents[i].display();
-            agents[i].update();
-        }
-    });
-
-
-    window.addEventListener('resize', resize);
-    function resize() {
-        let parent = renderer.canvas.parentElement;
-        renderer.size(parent.clientWidth, parent.clientWidth / 16 * 9);
-    }
-</script>
-
-```html
-<canvas id="c2"></canvas>
-
-<script src="/scripts/c2.js"></script>
-<!-- <script scr="/static/scripts/p5.js"></script> -->
-
-<script>
-  let canvas = document.getElementById("c2");
-  let renderer = new c2.Renderer(canvas);
-
-  // const renderer = new Renderer(document.getElementById('c2'));
-  resize();
-
-  renderer.background("#cccccc");
-  let random = new c2.Random();
-
-  class Agent extends c2.Point {
+class Agent extends c2.Circle{
     constructor() {
-      let x = random.next(renderer.width);
-      let y = random.next(renderer.height);
-      super(x, y);
+        let x = random.next(renderer.width);
+        let y = random.next(renderer.height);
+        let r = random.next(10, renderer.width/15);
+        super(x, y, r);
 
-      this.vx = random.next(-2, 2);
-      this.vy = random.next(-2, 2);
+        this.vx = random.next(-2, 2);
+        this.vy = random.next(-2, 2);
+        this.color = c2.Color.hsl(random.next(0, 30), random.next(30, 60), random.next(20, 100));
     }
 
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
+    update(){
+        this.p.x += this.vx;
+        this.p.y += this.vy;
 
-      if (this.x < 0) {
-        this.x = 0;
-        this.vx *= -1;
-      } else if (this.x > renderer.width) {
-        this.x = renderer.width;
-        this.vx *= -1;
-      }
-      if (this.y < 0) {
-        this.y = 0;
-        this.vy *= -1;
-      } else if (this.y > renderer.height) {
-        this.y = renderer.height;
-        this.vy *= -1;
-      }
+        if (this.p.x < this.r) {
+            this.p.x = this.r;
+            this.vx *= -1;
+        } else if (this.p.x > renderer.width-this.r) {
+            this.p.x = renderer.width-this.r;
+            this.vx *= -1;
+        }
+        if (this.p.y < this.r) {
+            this.p.y = this.r;
+            this.vy *= -1;
+        } else if (this.p.y > renderer.height-this.r) {
+            this.p.y = renderer.height-this.r;
+            this.vy *= -1;
+        }
     }
 
-    display() {
-      renderer.stroke("#333333");
-      renderer.lineWidth(5);
-      renderer.point(this.x, this.y);
+    display(){
+        renderer.stroke(false);
+        renderer.fill(this.color);
+        renderer.circle(this);
     }
-  }
 
-  let agents = new Array(20);
-  for (let i = 0; i < agents.length; i++) agents[i] = new Agent();
+    bounds(){
+      return this;
+    }
+}
 
-  renderer.draw(() => {
+let agents = [];
+for (let i = 0; i < 25; i++) agents[i] = new Agent();
+
+
+let quadTree = new c2.QuadTree(new c2.Rect(0,0,renderer.width,renderer.height), 1);
+
+function drawQuadTree(quadTree){
+    renderer.stroke('#333333');
+    renderer.lineWidth(1);
+    renderer.fill(false);
+    renderer.rect(quadTree.bounds);
+
+    if(quadTree.leaf()) return;
+    for(let i=0; i<4; i++) drawQuadTree(quadTree.children[i]);
+}
+
+let circle = new c2.Circle(0, 0, renderer.width/10);
+
+
+renderer.draw(() => {
     renderer.clear();
 
-    let delaunay = new c2.Delaunay();
-    delaunay.compute(agents);
-    let vertices = delaunay.vertices;
-    let edges = delaunay.edges;
-    let triangles = delaunay.triangles;
+    quadTree.clear();
+    quadTree.insert(agents);
 
-    let maxArea = 0;
-    let minArea = Number.POSITIVE_INFINITY;
-    for (let i = 0; i < triangles.length; i++) {
-      let area = triangles[i].area();
-      if (area < minArea) minArea = area;
-      if (area > maxArea) maxArea = area;
-    }
+    drawQuadTree(quadTree);
 
-    renderer.stroke("#333333");
-    renderer.lineWidth(1);
-    for (let i = 0; i < triangles.length; i++) {
-      let t = c2.norm(triangles[i].area(), minArea, maxArea);
-      let color = c2.Color.hsl(30 * t, 30 + 30 * t, 20 + 80 * t);
-      renderer.fill(color);
-      renderer.triangle(triangles[i]);
-    }
 
     for (let i = 0; i < agents.length; i++) {
-      agents[i].display();
-      agents[i].update();
+        agents[i].update();
+        agents[i].display();
     }
-  });
 
-  window.addEventListener("resize", resize);
-  function resize() {
+
+    let mouse = new c2.Point(renderer.mouse.x, renderer.mouse.y);
+    circle.p = mouse;
+
+    renderer.stroke('#000000');
+    renderer.lineWidth(1);
+    renderer.lineDash([5, 5]);
+    renderer.fill(false);
+    renderer.circle(circle);
+    renderer.lineDash(false);
+
+    let objects = quadTree.query(circle);
+
+    for(let i=0; i<objects.length; i++){
+        renderer.stroke('#000000');
+        renderer.lineWidth(1);
+        renderer.fill(false);
+        renderer.circle(objects[i]);
+    }
+});
+
+
+window.addEventListener('resize', resize);
+function resize() {
     let parent = renderer.canvas.parentElement;
-    renderer.size(parent.clientWidth, (parent.clientWidth / 16) * 9);
-  }
+    renderer.size(parent.clientWidth, parent.clientWidth / 16 * 9);
+}
 </script>
+
+```js
+const renderer = new c2.Renderer(document.getElementById("c2"));
+resize();
+
+renderer.background("#cccccc");
+let random = new c2.Random();
+
+class Agent extends c2.Circle {
+  // Random position and color for circle
+  constructor() {
+    let x = random.next(renderer.width);
+    let y = random.next(renderer.height);
+    let r = random.next(10, renderer.width / 15);
+    super(x, y, r);
+
+    this.vx = random.next(-2, 2);
+    this.vy = random.next(-2, 2);
+    this.color = c2.Color.hsl(
+      random.next(0, 30),
+      random.next(30, 60),
+      random.next(20, 100)
+    );
+  }
+
+  // Update the circle position for each frame, making the circle moving
+  update() {
+    this.p.x += this.vx;
+    this.p.y += this.vy;
+
+    if (this.p.x < this.r) {
+      this.p.x = this.r;
+      this.vx *= -1;
+    } else if (this.p.x > renderer.width - this.r) {
+      this.p.x = renderer.width - this.r;
+      this.vx *= -1;
+    }
+    if (this.p.y < this.r) {
+      this.p.y = this.r;
+      this.vy *= -1;
+    } else if (this.p.y > renderer.height - this.r) {
+      this.p.y = renderer.height - this.r;
+      this.vy *= -1;
+    }
+  }
+
+  // Draw the circle on canvas
+  display() {
+    renderer.stroke(false);
+    renderer.fill(this.color);
+    renderer.circle(this);
+  }
+
+  bounds() {
+    return this;
+  }
+}
+
+// Generate 25 circles
+let agents = [];
+for (let i = 0; i < 25; i++) agents[i] = new Agent();
+// Draw the first quad tree
+let quadTree = new c2.QuadTree(
+  new c2.Rect(0, 0, renderer.width, renderer.height),
+  1
+);
+// Using recursion to draw quad tree within a quad
+function drawQuadTree(quadTree) {
+  renderer.stroke("#333333");
+  renderer.lineWidth(1);
+  renderer.fill(false);
+  renderer.rect(quadTree.bounds);
+
+  if (quadTree.leaf()) return;
+  for (let i = 0; i < 4; i++) drawQuadTree(quadTree.children[i]);
+}
+
+let circle = new c2.Circle(0, 0, renderer.width / 10);
+
+// For each frame
+renderer.draw(() => {
+  renderer.clear();
+  // Draw quad tree
+  quadTree.clear();
+  quadTree.insert(agents);
+
+  drawQuadTree(quadTree);
+
+  // Move each circle
+  for (let i = 0; i < agents.length; i++) {
+    agents[i].update();
+    agents[i].display();
+  }
+
+  let mouse = new c2.Point(renderer.mouse.x, renderer.mouse.y);
+  circle.p = mouse;
+
+  renderer.stroke("#000000");
+  renderer.lineWidth(1);
+  renderer.lineDash([5, 5]);
+  renderer.fill(false);
+  renderer.circle(circle);
+  renderer.lineDash(false);
+
+  let objects = quadTree.query(circle);
+
+  for (let i = 0; i < objects.length; i++) {
+    renderer.stroke("#000000");
+    renderer.lineWidth(1);
+    renderer.fill(false);
+    renderer.circle(objects[i]);
+  }
+});
+// When window resize, redraw
+window.addEventListener("resize", resize);
+function resize() {
+  let parent = renderer.canvas.parentElement;
+  renderer.size(parent.clientWidth, (parent.clientWidth / 16) * 9);
+}
 ```
 
-## three.js
+## three.js Example
 
 Code heavily inspired by [this codepen](https://codepen.io/prisoner849/pen/ExpLBEO)
 
- <div id="three_container"></div>
+<div id="three_container"></div>
 
 <script type="module">
   import * as THREE from "/scripts/three.module.js";
@@ -329,7 +372,7 @@ class Particles extends THREE.Points {
     
     let m = new THREE.PointsMaterial({
       size: 0.5,
-      color: "white",
+      color: "pink",
       transparent: true,
       depthTest: false,
       onBeforeCompile: (shader) => {
@@ -405,17 +448,12 @@ const w = div.parentNode.scrollWidth
 const h = w * 9 / 16
 
 let scene = new THREE.Scene();
-scene.background = new THREE.Color("maroon");
+scene.background = new THREE.Color("indigo");
 let camera = new THREE.PerspectiveCamera(60, 16 /9 , 1, 1000);
 camera.position.set(0, 5, 10);
 let renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(w, h);
 div.appendChild(renderer.domElement);
-// window.addEventListener("resize", (event) => {
-//   camera.aspect = innerWidth / innerHeight;
-//   camera.updateProjectionMatrix();
-//   renderer.setSize(innerWidth, innerHeight);
-// });
 
 let controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -440,6 +478,8 @@ renderer.setAnimationLoop((_) => {
   renderer.render(scene, camera);
 });
 </script>
+
+<p></p>
 
 ```js
 class Particles extends THREE.Points {
@@ -476,7 +516,7 @@ class Particles extends THREE.Points {
 
     let m = new THREE.PointsMaterial({
       size: 0.5,
-      color: "white",
+      color: "pink",
       transparent: true,
       depthTest: false,
       onBeforeCompile: (shader) => {
@@ -546,28 +586,24 @@ class Particles extends THREE.Points {
       },
     });
     super(g, m);
-  }
+
+}
 }
 
 let scene = new THREE.Scene();
-scene.background = new THREE.Color("maroon");
+scene.background = new THREE.Color("indigo");
 let camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 1, 1000);
 camera.position.set(0, 5, 10);
 let renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(innerWidth, innerHeight);
 div.appendChild(renderer.domElement);
-// window.addEventListener("resize", (event) => {
-//   camera.aspect = innerWidth / innerHeight;
-//   camera.updateProjectionMatrix();
-//   renderer.setSize(innerWidth, innerHeight);
-// });
 
 let controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.target.set(0, 5, 0);
 
 let gu = {
-  time: { value: 0 },
+time: { value: 0 },
 };
 
 let grid = new THREE.GridHelper();
@@ -578,10 +614,15 @@ scene.add(particles);
 
 let clock = new THREE.Clock();
 
-renderer.setAnimationLoop((_) => {
-  let t = clock.getElapsedTime();
-  gu.time.value = t;
-  controls.update();
-  renderer.render(scene, camera);
+renderer.setAnimationLoop((\_) => {
+let t = clock.getElapsedTime();
+gu.time.value = t;
+controls.update();
+renderer.render(scene, camera);
 });
+
+```
+
+```
+
 ```
