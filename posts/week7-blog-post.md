@@ -315,3 +315,5 @@ function resize() {
 ## Why does combining ideas / libraries seem to make things more aesthetically chaotic?
 
 Each idea or library typically comes with its own set of principles, styles, and features, and it creates some extent of effective complexity. When combining elements from multiple ideas or libraries, they can create a sense of visual and conceptual dissonance, resulting in aesthetically chaos. Combining ideas or libraries can also introduce effective complexity by expanding the range of possibilities and interactions within the artwork. This increased effective complexity can lead to a proliferation of visual elements, interactions, and effects, further contributing to the chaotic aesthetic.
+
+---

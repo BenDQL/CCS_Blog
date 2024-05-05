@@ -445,3 +445,5 @@ This classification captures the essence of unpredictability and exuberant energ
 ### Does glitch increase or decrease effective complexity, and why?
 
 I think glitch aesthetics increases effective complexity. By introducing unpredictability and irregularity, glitches introduce errors and unexpected exceptions that generate chaos, thereby amplifying effective complexity. Additionally, in people's common pereption, complex systems are more likely to break down and are more challenging to fix than simple systems. Introducing glitches can create and enhance audiences' perception of a complex system, further increasing effective complexity.
+
+---

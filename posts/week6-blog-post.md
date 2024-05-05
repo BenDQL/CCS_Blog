@@ -623,6 +623,4 @@ renderer.render(scene, camera);
 
 ```
 
-```
-
-```
+---

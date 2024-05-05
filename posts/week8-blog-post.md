@@ -120,4 +120,14 @@ To enchance the sense of glitchy effect, I introduce variations in color to the 
 }
 ```
 
+<video controls="controls" width="800" height="600" name="text2">
+  <source src="text2.mov">
+</video>
+
 ### 2.Image Effect
+
+When the fifth sentence appears, the background image transitions from a smiling face to a saddened expression, while also changing to black and white. Following this, I divide the image into 30\*30 blocks and apply a recursive algorithm to rotate these blocks in a spiral pattern.
+
+<video controls="controls" width="800" height="600" name="text3">
+  <source src="text3.mov">
+</video>
